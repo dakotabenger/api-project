@@ -4,8 +4,12 @@ const { environment } = require('./config');
 const app = express();
 const {tweetRouter} = require("./routes/tweets")
 const {indexRouter} = require("./routes/index")
-
 app.use(express.json());
+const cors = require('cors');
+app.use(cors({
+  origin: "http://localhost:4000"
+}))
+
 app.use(morgan("dev"));
 app.use("/tweets",tweetRouter)
 app.use("/",indexRouter)
